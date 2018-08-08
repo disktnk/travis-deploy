@@ -8,4 +8,4 @@ sudo: false
 install:
 - pip install -e .
 script:
-- python -c "import tools.tools as t; t.msg()"
+- python -c "import tools.msg as m; m.msg()"
