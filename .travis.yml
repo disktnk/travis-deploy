@@ -16,5 +16,4 @@ deploy:
     tags: true
     python: 3.6
   allow_failure: false
-  password:
-    secure: $PYPI_DISKTNK_PASS
+  password: $PYPI_DISKTNK_PASS
