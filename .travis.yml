@@ -11,9 +11,10 @@ script:
 - python -c "import tools.msg as m; m.msg()"
 deploy:
   provider: pypi
-  user: disktnk
+  user: $PYPI_DEPLOY_USER
+  password: $PYPI_DEPLOY_PASS
+  before_deploy: npm install
   on:
-    tags: true
+    condition: echo `git describe --abbrev=0 --tags` != echo v`python -c "import tools._version; print(tools._version.__version__)"`
     python: 3.6
   allow_failure: false
-  password: $PYPI_DISKTNK_PASS
