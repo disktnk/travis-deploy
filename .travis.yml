@@ -15,6 +15,6 @@ deploy:
   password: $PYPI_DEPLOY_PASS
   before_deploy: npm install
   on:
-    condition: echo `git describe --abbrev=0 --tags` != echo v`python -c "import tools._version; print(tools._version.__version__)"`
+    condition: '`git describe --abbrev=0 --tags` != v`python -c "import tools._version; print(tools._version.__version__)"`'
     python: 3.6
   allow_failure: false
