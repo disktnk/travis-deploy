@@ -10,11 +10,17 @@ install:
 script:
 - python -c "import tools.msg as m; m.msg()"
 deploy:
-  provider: pypi
-  user: $PYPI_DEPLOY_USER
-  password: $PYPI_DEPLOY_PASS
-  before_deploy: npm install
-  on:
-    condition: '`git describe --abbrev=0 --tags` != v`python -c "import tools._version; print(tools._version.__version__)"`'
-    python: 3.6
-  allow_failure: false
+  - provider: pypi
+    user: $PYPI_MAINTAINER_NAME
+    password: $PYPI_MAINTAINER_PASS
+    on:
+      tags: true
+      python: 3.6
+    allow_failure: false
+    skip_cleanup: true
+  - provider: script
+    script: bash .travis/docker_push.sh
+    on:
+      tags: true
+      python: 3.6
+    allow_failure: false
