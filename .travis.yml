@@ -26,3 +26,4 @@ deploy:
       tags: true
       python: 3.6
     allow_failure: false
+    skip_cleanup: true
